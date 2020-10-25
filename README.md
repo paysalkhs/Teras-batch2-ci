@@ -1,6 +1,8 @@
 # Teras-batch2-ci
 
-Gunakan git clone https://github.com/paysalkhs/Teras-batch2-ci.git
+Gunakan command :
+git clone https://github.com/paysalkhs/Teras-batch2-ci.git
+pada git bash kalian.
 Clone source ini di htdocs kalian menggunakan aplikasi git yang sudah terinstal.
 Caranya :
 1. Install git
