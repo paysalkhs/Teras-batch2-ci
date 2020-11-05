@@ -51,5 +51,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'welcome';
 $route['testWelcome/(:any)'] = 'welcome/test/$1';
+$route['home'] = 'dashboard/index';
+$route['logout'] = 'dashboard/logout';
+$route['add-post'] = 'posts/index';
+$route['add-post/add'] = 'posts/add';
+$route['add-post/submit'] = 'posts/ajaxSubmitPost';
+$route['add-post/getAll'] = 'posts/ajaxGetAllPosts';
+$route['add-post/delete/(:num)'] = 'posts/ajaxDeletePost/$1';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

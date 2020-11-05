@@ -26,10 +26,21 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <?php foreach($menu->result() as $val){ ?>
-            <li class="nav-item">
-              <a class="nav-link" href="<?=base_url($val->menu_url);?>"><?=$val->menu_name;?></a>
-            </li>
+          <?php if($this->session->userdata('login')){ ?>
+              <?php foreach($menu->result() as $val){ ?>
+                <li class="nav-item">
+                  <a class="nav-link" href="<?=base_url($val->menu_url);?>"><?=$val->menu_name;?></a>
+                </li>
+              <?php } ?>
+              <li class="nav-item">
+                <a class="nav-link" href="#"><?php echo ucfirst($this->session->userdata('username')); ?></a>
+              </li>
+          <?php }else{ ?>
+            <?php foreach($menu->result() as $val){ ?>
+              <li class="nav-item">
+                <a class="nav-link" href="<?=base_url($val->menu_url);?>"><?=$val->menu_name;?></a>
+              </li>
+            <?php } ?>
           <?php } ?>
         </ul>
       </div>
