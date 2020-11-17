@@ -22,6 +22,6 @@ class Dashboard extends CI_Controller {
 	public function logout(){
 		$sessions = ['username','login','fullname'];
 		$this->session->unset_userdata($sessions);
-		redirect('/welcome');
+		redirect('/welcome/login');
 	}
 }

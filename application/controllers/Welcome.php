@@ -97,23 +97,32 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->model('Global_model','global');
 		$this->load->library('encryption');
+		$this->load->library('form_validation');
 
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
 
-		$check = $this->global->check_user($username);
-		if($check->num_rows() == 1){
-			$dePassword = $this->encryption->decrypt($check->row()->password);
-			if($dePassword == $password){
-				$this->session->set_userdata('username',$username);
-				$this->session->set_userdata('login',true);
-				$this->session->set_userdata('fullname',$check->row()->fullname);
-				echo json_encode(['status' => true]);
+		$this->form_validation->set_rules('username','Username','required');
+		$this->form_validation->set_rules('password','Password','required');
+
+		if($this->form_validation->run() == FALSE){
+			$data = ['username' => form_error('username'),'password' => form_error('password')];
+			echo json_encode(['status' => false,'type' => 'validation','data' => $data]);
+		}else{
+			$check = $this->global->check_user($username);
+			if($check->num_rows() == 1){
+				$dePassword = $this->encryption->decrypt($check->row()->password);
+				if($dePassword == $password){
+					$this->session->set_userdata('username',$username);
+					$this->session->set_userdata('login',true);
+					$this->session->set_userdata('fullname',$check->row()->fullname);
+					echo json_encode(['status' => true]);
+				}else{
+					echo json_encode(['status' => false,'message' => 'Maaf Username & Password Salah']);
+				}
 			}else{
 				echo json_encode(['status' => false,'message' => 'Maaf Username & Password Salah']);
 			}
-		}else{
-			echo json_encode(['status' => false,'message' => 'Maaf Username & Password Salah']);
 		}
 	}
 }

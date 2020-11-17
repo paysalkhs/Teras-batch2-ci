@@ -58,6 +58,8 @@ $route['add-post/add'] = 'posts/add';
 $route['add-post/submit'] = 'posts/ajaxSubmitPost';
 $route['add-post/getAll'] = 'posts/ajaxGetAllPosts';
 $route['add-post/delete/(:num)'] = 'posts/ajaxDeletePost/$1';
+$route['add-post/edit/(:num)'] = 'posts/edit/$1';
+$route['add-post/edit/submit'] = 'posts/ajaxEditPost';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

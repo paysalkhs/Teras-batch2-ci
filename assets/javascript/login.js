@@ -10,7 +10,11 @@ $(document).ready(function(){
                 if(json.status === true){
                     window.location.reload();
                 }else{
-                    alert(json.message);
+                    if(json.type === 'validation'){
+                        $.each(json.data,function(i,v){
+                            $("#error_"+i).html(v);
+                        })
+                    }
                 }
             },error: function(err){
                 console.log(err);

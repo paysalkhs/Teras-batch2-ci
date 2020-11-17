@@ -34,4 +34,15 @@ class Global_model extends CI_Model {
 		return $this->db->where('post_id',$id)
 						->delete('posts');
 	}
+	function getDataPost($id){
+		return $this->db->select("*")
+						->from("posts")
+						->where('post_id',$id)
+						->get();
+	}
+	function updatePost($id,$data)
+	{
+		return $this->db->where('post_id',$id)
+						->update('posts',$data);
+	}
 }
